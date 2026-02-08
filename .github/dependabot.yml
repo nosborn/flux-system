@@ -1,12 +1,14 @@
 ---
 version: 2
+
 updates:
   - package-ecosystem: docker
     directories:
       - /**/resources
     schedule:
       interval: weekly
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
