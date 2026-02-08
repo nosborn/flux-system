@@ -14,18 +14,3 @@ configMapGenerator:
     envs:
       - configs/app-ini.env
     name: gitea-app-ini-env
-
-patches:
-  - patch: |-
-      - op: replace
-        path: /spec/template/spec/securityContext/fsGroup
-        value: 981
-      - op: add
-        path: /spec/template/spec/securityContext/runAsGroup
-        value: 981
-      - op: add
-        path: /spec/template/spec/securityContext/runAsUser
-        value: 987
-    target:
-      kind: StatefulSet
-      name: gitea

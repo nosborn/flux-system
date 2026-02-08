@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   annotations:
     secret.reloader.stakater.com/reload: gitea-admin
@@ -14,7 +14,8 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: gitea
       app.kubernetes.io/name: gitea
-  serviceName: gitea-http
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -94,6 +95,9 @@ spec:
               memory: 128Mi
           securityContext:
             allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
             readOnlyRootFilesystem: true
             runAsNonRoot: true
           volumeMounts:
@@ -130,6 +134,9 @@ spec:
               memory: 128Mi
           securityContext:
             allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
             readOnlyRootFilesystem: true
             runAsNonRoot: true
           volumeMounts:
@@ -164,6 +171,9 @@ spec:
               memory: 128Mi
           securityContext:
             allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
             readOnlyRootFilesystem: true
             runAsNonRoot: true
           volumeMounts:
@@ -174,9 +184,6 @@ spec:
             - mountPath: /usr/sbinx
               name: init
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
-        runAsUser: 1000
         seccompProfile:
           type: RuntimeDefault
       terminationGracePeriodSeconds: 60
@@ -192,7 +199,7 @@ spec:
           name: temp
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/instance: gitea
@@ -204,7 +211,8 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: gitea
       app.kubernetes.io/name: gitea-valkey
-  serviceName: gitea-valkey-headless
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -237,8 +245,6 @@ spec:
             - mountPath: /data
               name: data
       securityContext:
-        runAsGroup: 1000
-        runAsUser: 1000
         seccompProfile:
           type: RuntimeDefault
       volumes:
