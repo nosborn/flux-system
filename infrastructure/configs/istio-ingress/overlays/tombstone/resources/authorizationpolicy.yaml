@@ -2,27 +2,20 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: deny-external-to-internal
+  name: allow-local
 spec:
-  action: DENY
+  action: ALLOW
   rules:
     - from:
         - source:
-            notIpBlocks:
+            ipBlocks:
               - 192.168.1.0/24
               - 192.168.4.0/24
               - 2a0b:9401:8b:1::/64
-      to:
-        - operation:
-            hosts:
-              - git.home.arpa
-              - lidarr.home.arpa
-              - nzbget.home.arpa
-              - ombi.home.arpa
-              - passwords.home.arpa
-              - prowlarr.home.arpa
-              - radarr.home.arpa
-              - sonarr.home.arpa
+              - 2a0b:9401:8b:4::/64
+            notIpBlocks:
+              - 192.168.1.1/32
+              - 2a0b:9401:8b:1::1/128
   targetRef:
     group: gateway.networking.k8s.io
     kind: Gateway
