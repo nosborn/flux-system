@@ -15,9 +15,9 @@ patches:
     target:
       kind: Certificate
   - patch: |-
-      - op: add
-        path: /spec/hostnames
-        value:
-          - immich.home.arpa
+      - op: replace
+        path: /spec/routes/0/match
+        value: "Host(`immich.home.arpa`)"
     target:
-      kind: HTTPRoute
+      kind: IngressRoute
+      name: immich
