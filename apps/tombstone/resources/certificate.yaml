@@ -3,6 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: lidarr
+  namespace: media
 spec:
   dnsNames:
     - lidarr.home.arpa
@@ -17,6 +18,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: nzbget
+  namespace: media
 spec:
   dnsNames:
     - nzbget.home.arpa
@@ -31,6 +33,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: ombi
+  namespace: media
 spec:
   dnsNames:
     - ombi.home.arpa
@@ -45,6 +48,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: prowlarr
+  namespace: media
 spec:
   dnsNames:
     - prowlarr.home.arpa
@@ -59,6 +63,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: radarr
+  namespace: media
 spec:
   dnsNames:
     - radarr.home.arpa
@@ -73,6 +78,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: sonarr
+  namespace: media
 spec:
   dnsNames:
     - sonarr.home.arpa
