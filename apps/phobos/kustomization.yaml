@@ -15,5 +15,5 @@ resources:
   - rsshub
   - search
   - social
-  - slskr
+  # - slskr
   - vaultwarden
