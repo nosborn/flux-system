@@ -20,6 +20,7 @@ spec:
           - name: medium-tls
           - name: reddit-tls
           - name: skimresources-tls
+          - name: theguardian-tls
           - name: tiktok-tls
           - name: twitter-tls
           - name: youtube-tls

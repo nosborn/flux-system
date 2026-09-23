@@ -130,6 +130,24 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: theguardian
+  namespace: redirector
+spec:
+  dnsNames:
+    - ophan.theguardian.com
+  duration: 168h
+  issuerRef:
+    kind: ClusterIssuer
+    name: ownca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  renewBefore: 8h
+  secretName: theguardian-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: tiktok
   namespace: redirector
 spec:
