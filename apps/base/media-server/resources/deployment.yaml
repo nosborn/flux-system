@@ -32,7 +32,7 @@ spec:
             - name: TZ
               value: Europe/London
           image: ghcr.io/nosborn/bazarr:1.6.2
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -124,7 +124,7 @@ spec:
         - env:
             - name: LANG
               value: en_GB.UTF-8
-          image: ghcr.io/nosborn/lidarr:3.1.0.4875
+          image: ghcr.io/nosborn/lidarr:latest
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -397,7 +397,7 @@ spec:
             - name: LANG
               value: en_GB.UTF-8
           image: ghcr.io/nosborn/ombi:4.53.10
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
             periodSeconds: 10
@@ -436,7 +436,7 @@ spec:
             - name: LANG
               value: en_GB.UTF-8
           image: ghcr.io/nosborn/ombi:4.53.10
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: ombi-migrate
           resources: {}
           securityContext:
@@ -494,7 +494,7 @@ spec:
             - name: LANG
               value: en_GB.UTF-8
           image: ghcr.io/nosborn/prowlarr:2.5.2.5491
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -690,7 +690,7 @@ spec:
             - name: LANG
               value: en_GB.UTF-8
           image: ghcr.io/nosborn/radarr:6.3.0.10514
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -881,7 +881,7 @@ spec:
             - name: LANG
               value: en_GB.UTF-8
           image: ghcr.io/nosborn/sonarr:4.0.19.2979
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
