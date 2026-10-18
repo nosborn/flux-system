@@ -92,7 +92,7 @@ spec:
               value: !!str true
             - name: TARGET
               value: http://localhost:3000
-          image: ghcr.io/techarohq/anubis:v1.25.0
+          image: ghcr.io/techarohq/anubis:v1.28.1
           imagePullPolicy: IfNotPresent
           name: anubis
           ports:
