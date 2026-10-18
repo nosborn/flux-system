@@ -81,7 +81,7 @@ spec:
             - !!str 5
             - --retry-all-errors
             - https://huggingface.co/Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF/resolve/main/Qwen3.5-9B-DeepSeek-V4-Flash-Q3_K_M.gguf
-          image: quay.io/curl/curl:8.21.0
+          image: quay.io/curl/curl:8.23.0
           name: fetch-model
           securityContext:
             allowPrivilegeEscalation: false
