@@ -223,7 +223,7 @@ spec:
               value: en_GB.UTF-8
             - name: TZ
               value: Europe/London
-          image: ghcr.io/kirovair/muxarr:0.9.2
+          image: ghcr.io/kirovair/muxarr:0.9.12
           imagePullPolicy: IfNotPresent
           # livenessProbe:
           #   failureThreshold: 3
