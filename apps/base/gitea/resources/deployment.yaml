@@ -32,7 +32,7 @@ spec:
           env:
             - name: GITEA__security__REVERSE_PROXY_TRUSTED_PROXIES
               value: 127.0.0.0/8,::1/128
-          image: docker.gitea.com/gitea:1.26.4-rootless
+          image: docker.gitea.com/gitea:28.2.0-rootless
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
