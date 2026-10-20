@@ -301,7 +301,7 @@ spec:
         - env:
             - name: LANG
               value: en_GB.UTF-8
-          image: ghcr.io/nosborn/nzbget:26.2
+          image: ghcr.io/nosborn/nzbget:26.3
           imagePullPolicy: Always
           lifecycle:
             preStop:
