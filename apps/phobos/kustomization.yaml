@@ -6,14 +6,14 @@ resources:
   - gitea
   # - gitea-actions
   # - homebridge
-  - llama-cpp
+  # - llama-cpp
   - login
   - media-server
-  - miniflux
-  - mitmproxy
+  # - miniflux
+  # - mitmproxy
   - redirector
-  - rsshub
-  - search
-  - social
+  # - rsshub
+  # - search
+  # - social
   # - slskr
   - vaultwarden
