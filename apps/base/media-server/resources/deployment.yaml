@@ -493,7 +493,7 @@ spec:
         - env:
             - name: LANG
               value: en_GB.UTF-8
-          image: ghcr.io/nosborn/prowlarr:2.5.2.5491
+          image: ghcr.io/nosborn/prowlarr:2.6.5.5623
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
