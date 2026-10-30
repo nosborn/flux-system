@@ -33,7 +33,7 @@ spec:
           env:
             - name: HOME
               value: /home/mitmproxy
-          image: mitmproxy/mitmproxy:12.2.3
+          image: mitmproxy/mitmproxy:12.3.1
           imagePullPolicy: IfNotPresent
           # livenessProbe:
           #   exec:
