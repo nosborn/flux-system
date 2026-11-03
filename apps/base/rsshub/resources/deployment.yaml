@@ -36,7 +36,7 @@ spec:
               value: ws://rsshub-puppeteer:3000
             - name: REDIS_URL
               value: redis://rsshub-valkey:6379/
-          image: ghcr.io/diygod/rsshub:2026-06-20
+          image: ghcr.io/diygod/rsshub:2026-11-03
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
