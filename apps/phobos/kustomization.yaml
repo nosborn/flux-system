@@ -7,7 +7,7 @@ resources:
   # - gitea-actions
   # - homebridge
   # - llama-cpp
-  - login
+  # - login
   - media-server
   # - miniflux
   # - mitmproxy
@@ -16,4 +16,4 @@ resources:
   # - search
   # - social
   # - slskr
-  - vaultwarden
+  # - vaultwarden
