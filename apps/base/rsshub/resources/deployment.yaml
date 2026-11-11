@@ -88,7 +88,7 @@ spec:
         app.kubernetes.io/name: rsshub-puppeteer
     spec:
       containers:
-        - image: browserless/chrome:1.61.1-puppeteer-21.9.0
+        - image: browserless/chrome:1.61-puppeteer-21.9.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
