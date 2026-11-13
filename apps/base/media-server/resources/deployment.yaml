@@ -880,7 +880,7 @@ spec:
         - env:
             - name: LANG
               value: en_GB.UTF-8
-          image: ghcr.io/nosborn/sonarr:4.0.19.2979
+          image: ghcr.io/nosborn/sonarr:4.0.20.3014
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
