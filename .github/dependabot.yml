@@ -25,3 +25,11 @@ updates:
       interval: daily
     assignees:
       - nosborn
+
+  - package-ecosystem: npm
+    directories:
+      - /apps/base/homebridge/configs
+    schedule:
+      interval: weekly
+    assignees:
+      - nosborn

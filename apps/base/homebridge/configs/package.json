@@ -1,0 +1,11 @@
+{
+  "description": "This file keeps track of which plugins should be installed.",
+  "dependencies": {
+    "@homebridge-plugins/homebridge-govee": "11.39.1",
+    "@homebridge-plugins/homebridge-matter": "1.8.0",
+    "homebridge": "2.5.0",
+    "homebridge-dreo": "5.1.0",
+    "homebridge-unifi-occupancy-lite": "0.0.20"
+  },
+  "private": true
+}

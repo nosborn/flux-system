@@ -22,59 +22,77 @@ spec:
         app.kubernetes.io/instance: homebridge
         app.kubernetes.io/name: homebridge
     spec:
+      automountServiceAccountToken: false
       containers:
-        - envFrom:
-            - secretRef:
-                name: homebridge-env
-          image: ghcr.io/nosborn/homebridge:2.1.0
-          imagePullPolicy: Always
-          # livenessProbe:
-          #   failureThreshold: 3
-          #   httpGet:
-          #     path: /alive
-          #     port: http
-          #     scheme: HTTP
-          #   periodSeconds: 10
-          #   successThreshold: 1
-          #   timeoutSeconds: 1
+        - env:
+            # Use host Avahi (via D-Bus) instead of a second mDNS stack.
+            - name: ENABLE_AVAHI
+              value: "0"
+            - name: TZ
+              value: Europe/London
+          image: ghcr.io/homebridge/homebridge:2026-11-02
           name: homebridge
           ports:
             - containerPort: 8581
               name: http
               protocol: TCP
-          # readinessProbe:
-          #   failureThreshold: 3
-          #   httpGet:
-          #     path: /alive
-          #     port: http
-          #     scheme: HTTP
-          #   periodSeconds: 10
-          #   successThreshold: 1
-          #   timeoutSeconds: 1
+          # Plugin install (npm) runs before the UI listens.
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 10
           resources: {}
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
           volumeMounts:
-            - mountPath: /app/accessories
-              name: accessories
-            - mountPath: /app/persist
-              name: persist
+            - mountPath: /homebridge
+              name: data
+            # Sockets only: setup.sh rm/chowns files in these directories.
+            - mountPath: /run/avahi-daemon/socket
+              name: avahi-socket
+            - mountPath: /run/dbus/system_bus_socket
+              name: dbus-socket
+      # HomeKit discovery needs mDNS on the LAN.
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      # Seed GitOps-managed files into the data volume on every start.
+      # The UI may edit them at runtime; changes revert on restart.
+      initContainers:
+        - command:
+            - sh
+            - -c
+            - |
+              cp /config/config.json /homebridge/
+              cp /files/package.json /files/startup.sh /homebridge/
+              chmod 0755 /homebridge/startup.sh
+          image: ghcr.io/homebridge/homebridge:2026-11-02
+          name: seed
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              readOnly: true
+            - mountPath: /files
+              name: files
+              readOnly: true
+            - mountPath: /homebridge
+              name: data
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
-        runAsUser: 1000
         seccompProfile:
           type: RuntimeDefault
-      serviceAccountName: homebridge
       volumes:
-        - name: accessories
+        - hostPath:
+            path: /run/avahi-daemon/socket
+            type: Socket
+          name: avahi-socket
+        - hostPath:
+            path: /run/dbus/system_bus_socket
+            type: Socket
+          name: dbus-socket
+        - name: config
+          secret:
+            secretName: homebridge-config
+        - configMap:
+            name: homebridge-files
+          name: files
+        - name: data
           persistentVolumeClaim:
-            claimName: homebridge-accessories
-        - name: persist
-          persistentVolumeClaim:
-            claimName: homebridge-persist
+            claimName: homebridge-data

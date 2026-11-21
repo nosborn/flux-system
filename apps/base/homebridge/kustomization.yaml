@@ -9,5 +9,16 @@ resources:
   - resources/httproute.yaml
   - resources/middleware.yaml
   - resources/namespace.yaml
-  - resources/networkpolicy.yaml
+  - resources/persistentvolumeclaim.yaml
   - resources/service.yaml
+
+configMapGenerator:
+  - files:
+      - configs/package.json
+      - configs/startup.sh
+    name: homebridge-files
+    namespace: homebridge
+    # startup.sh contains JS template literals, e.g. ${device.name}.
+    options:
+      annotations:
+        kustomize.toolkit.fluxcd.io/substitute: disabled

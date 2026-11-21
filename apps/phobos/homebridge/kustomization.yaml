@@ -22,19 +22,6 @@ patches:
       name: homebridge
       namespace: homebridge
   - patch: |-
-      - op: add
-        path: /spec/template/spec/securityContext/fsGroup
-        value: 100
-      - op: add
-        path: /spec/template/spec/securityContext/runAsGroup
-        value: 100
-      - op: add
-        path: /spec/template/spec/securityContext/runAsUser
-        value: 1026
-    target:
-      kind: Deployment
-      namespace: homebridge
-  - patch: |-
       - op: replace
         path: /spec/hostnames
         value:
