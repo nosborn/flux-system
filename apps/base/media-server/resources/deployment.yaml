@@ -689,7 +689,7 @@ spec:
         - env:
             - name: LANG
               value: en_GB.UTF-8
-          image: ghcr.io/nosborn/radarr:6.3.0.10514
+          image: ghcr.io/nosborn/radarr:7.0.3.10918
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
