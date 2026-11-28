@@ -30,38 +30,38 @@ spec:
       app.kubernetes.io/name: bazarr
   policyTypes:
     - Ingress
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: NetworkPolicy
-# metadata:
-#   name: lidarr
-#   namespace: media
-# spec:
-#   ingress:
-#     - from:
-#         - namespaceSelector:
-#             matchLabels:
-#               kubernetes.io/metadata.name: media
-#           podSelector:
-#             matchLabels:
-#               app.kubernetes.io/name: ombi
-#         - namespaceSelector:
-#             matchLabels:
-#               kubernetes.io/metadata.name: media
-#           podSelector:
-#             matchLabels:
-#               app.kubernetes.io/name: prowlarr
-#         - namespaceSelector:
-#             matchLabels:
-#               kubernetes.io/metadata.name: traefik
-#           podSelector:
-#             matchLabels:
-#               app.kubernetes.io/name: traefik
-#   podSelector:
-#     matchLabels:
-#       app.kubernetes.io/name: lidarr
-#   policyTypes:
-#     - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: media
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ombi
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: media
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: prowlarr
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: traefik
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: traefik
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: lidarr
+  policyTypes:
+    - Ingress
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
